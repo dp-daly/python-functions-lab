@@ -70,6 +70,7 @@ print('Exercise 3:', apply_discount(100, 25))
 
 def convert_temperature(temperature, unit):
 
+    # Experimenting with doc strings.
     """ This function converts temperature """
     
     # ! I've been experimenting with error handling / validation in Python but can't seem to manage this 'gracefully'. It always throws Python's own error if a non-string is provided as the unit argument.
@@ -92,7 +93,6 @@ def convert_temperature(temperature, unit):
 print(convert_temperature.__doc__)
 print('Exercise 4: Convert 0°C to Fahrenheit:', convert_temperature(0, 'C'))
 print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F'))
-print(convert_temperature(32, f))
 
 # Exercise 5: Sum to N
 #
