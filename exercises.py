@@ -75,10 +75,9 @@ def convert_temperature(temperature, unit):
     # ! I've been experimenting with error handling / validation in Python but can't seem to manage this 'gracefully'. It always throws Python's own error if a non-string is provided as the unit argument.
 
     try: 
-        if not isinstance(unit, str):
-            raise TypeError("Unit must be a string.") 
-
         unit = unit.upper()
+    except TypeError:
+        print("Error: Unit must be a string")
         
         if unit not in ('C', 'F'):
             print("Error: Unit must be 'C' for Celsius or 'F' for Fahrenheit.")
@@ -89,13 +88,11 @@ def convert_temperature(temperature, unit):
         elif unit == "F":
             return (temperature - 32) * 5/9
         
-    except TypeError as e: 
-        print(f"Error: {e}")
 
 print(convert_temperature.__doc__)
 print('Exercise 4: Convert 0°C to Fahrenheit:', convert_temperature(0, 'C'))
 print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F'))
-
+print(convert_temperature(32, f))
 
 # Exercise 5: Sum to N
 #
@@ -107,6 +104,86 @@ print('Exercise 4: Convert 32°F to Celsius:', convert_temperature(32, 'F'))
 #
 # Define the function and then call it below.
 
-
+def sum_to(n): 
+    return sum(range(1, n+1))
 
 print('Exercise 5:', sum_to(6))
+
+
+# Exercise 6: Find the Largest Number
+#
+# Write a function named `largest` that takes three integers as arguments and returns the largest of them.
+#
+# Examples:
+# largest(1, 2, 3) should return 3.
+# largest(10, 4, 2) should return 10.
+#
+# Define your function and test it with different inputs.
+
+def largest(n1, n2, n3):
+    if n1 >= n2 and n1 >= n3:
+        return n1
+    elif n2 >= n1 and n2 >= n3:
+        return n2
+    else:
+        return n3
+
+print('Exercise 6:', largest(1, 2, 3))
+
+
+# Exercise 7: Calculate a Tip
+#
+# Create a function called `calculate_tip`. It should take the bill amount and the tip percentage (as a whole number).
+# The function should return the amount of the tip.
+#
+# Examples:
+# calculate_tip(50, 20) should return 10.
+#
+# Write your function and test its output below.
+
+def calculate_tip(amount, percent):
+    return amount * percent / 100
+
+print('Exercise 7:', calculate_tip(50, 20))
+
+
+# Exercise 8: Calculate Product of Numbers
+#
+# Write a function named `product` that takes an arbitrary number of numbers, multiplies them, and returns the product.
+# Review your notes on *args for handling an arbitrary number of arguments.
+#
+# Examples:
+# product(-1, 4) should return -4.
+# product(2, 5, 5) should return 50.
+#
+# Define the function and call it with different sets of numbers to test.
+
+def product(*nums):
+    # ! this was a bit tricky to remember to provide an 'accumulator'
+    total = 1
+    for num in nums:
+        total = total * num
+        # logic: 
+        # grabs 2 and times it by 1; 
+        # 2 is then in the total accumulator and is used to times 5 
+        # the total is then 10, so we times is by 5 to get 50
+    return total
+
+print('Exercise 8:', product(2, 5, 5))
+
+
+# Exercise 9:
+
+def basic_calculator(a: int, b: int, operator: str):
+    #Following tristan's convention, I've included notes on expected values of arguments ^
+    if operator == "add":  
+        return a + b
+    if operator == "subtract":
+        return a - b
+    if operator == "multiply":
+        return a * b
+    if operator == "divide":
+        return a / b 
+
+print('Exercise 9:', basic_calculator(10, 5, "subtract"))
+
